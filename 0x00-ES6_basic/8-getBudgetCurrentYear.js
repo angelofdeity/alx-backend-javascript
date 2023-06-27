@@ -12,5 +12,3 @@ export default function getBudgetForCurrentYear(income, gdp, capita) {
 
   return budget;
 }
-
-console.log(getBudgetForCurrentYear(2100, 5200, 1090));
