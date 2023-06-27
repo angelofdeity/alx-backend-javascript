@@ -5,6 +5,7 @@ function handleResponseFromAPI(promise) {
       return { status: 200, body: 'Success' };
     })
     .catch(() => {
-      throw new Error();
+      console.log('Got a response from the API');
+      return new Error();
     });
 }
