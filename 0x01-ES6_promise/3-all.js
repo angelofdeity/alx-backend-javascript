@@ -1,4 +1,4 @@
-import { createUser, uploadPhoto } from './utils.js';
+import { createUser, uploadPhoto } from './utils';
 
 export default function handleProfileSignup() {
   try {
@@ -7,4 +7,3 @@ export default function handleProfileSignup() {
     console.log('Signup system offline');
   }
 }
-handleProfileSignup();
