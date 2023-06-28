@@ -5,4 +5,3 @@ export default function handleProfileSignup() {
     .then(([user, upload]) => console.log(upload.body, Object.values(user).join(' ')))
     .catch(() => console.log('Signup system offline'));
 }
-handleProfileSignup();
