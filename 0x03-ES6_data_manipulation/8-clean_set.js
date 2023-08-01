@@ -1,7 +1,7 @@
 export default function cleanSet(mySet, myStr) {
   return [...mySet]
     .filter((elem) => myStr && elem.startsWith(myStr))
-    .map((elem) => elem.replace(myStr, ''))
+    .map((elem) => elem.slice(myStr.length))
     .join('-');
 }
 // export default function cleanSet(mySet, myStr) {
