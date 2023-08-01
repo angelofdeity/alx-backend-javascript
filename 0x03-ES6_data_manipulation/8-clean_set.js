@@ -1,4 +1,7 @@
 export default function cleanSet(mySet, myStr) {
+  // if (!myStr) {
+  //   return '';
+  // }
   return [...mySet]
     .filter((elem) => elem && myStr && elem.startsWith(myStr))
     .map((elem) => (elem ? elem.slice(myStr.length) : ''))
@@ -13,3 +16,5 @@ export default function cleanSet(mySet, myStr) {
 //   });
 //   return newArr.join('-');
 // }
+console.log(cleanSet(new Set(['bonjovi', 'bonaparte', 'bonappetit', 'banana']), undefined));
+console.log(cleanSet(new Set(['bonjovi', 'bonaparte', 'bonappetit', 'banana']), ''));
