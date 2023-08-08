@@ -1,4 +1,3 @@
-const { error } = require('console');
 const fs = require('fs')
 
 function handleData(data) {
@@ -30,3 +29,4 @@ function countStudents(filePath) {
     })
   })
 }
+module.exports = countStudents
