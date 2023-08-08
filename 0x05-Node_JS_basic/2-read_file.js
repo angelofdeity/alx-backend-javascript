@@ -1,27 +1,29 @@
-const fs = require('fs')
+const fs = require('fs');
+
 function handleData(data) {
-  lines = data.split(`\n`).filter((line) => line !== 'firstname,lastname,age,field')
-  const cs = [], swe = [];
-  students = lines.map((line) => line.split(','))
+  const lines = data.split('\n').filter((line) => line !== 'firstname,lastname,age,field');
+  const cs = [];
+  const swe = [];
+  const students = lines.map((line) => line.split(','));
   for (const student of students) {
     if (student) {
       if (student[3] === 'CS') {
-        cs.push(student[0])
+        cs.push(student[0]);
       } else if (student[3] === 'SWE') {
-        swe.push(student[0])
+        swe.push(student[0]);
       }
     }
   }
-  console.log(`Number of students: ${cs.length + swe.length}`)
-  console.log(`Number of students in CS: ${cs.length}. List: ${cs.join(', ')}`)
-  console.log(`Number of students in SWE: ${swe.length}. List: ${swe.join(', ')}`)
+  console.log(`Number of students: ${cs.length + swe.length}`);
+  console.log(`Number of students in CS: ${cs.length}. List: ${cs.join(', ')}`);
+  console.log(`Number of students in SWE: ${swe.length}. List: ${swe.join(', ')}`);
 }
 function countStudents(filePath) {
   try {
-    const data = fs.readFileSync(filePath, 'utf-8')
-    handleData(data)
+    const data = fs.readFileSync(filePath, 'utf-8');
+    handleData(data);
   } catch (error) {
-    throw new Error('Cannot load the database')
+    throw new Error('Cannot load the database');
   }
 }
-module.exports = countStudents
+module.exports = countStudents;
