@@ -6,7 +6,7 @@ const filePath = path.join(__dirname, '../../database.csv');
 export default class StudentsController {
   static getAllStudents(req, res) {
     res.statusCode = 200;
-    readDatabase()
+    readDatabase(filePath)
       .then((data) => {
         const response = [
           'This is the list of our students',
@@ -24,7 +24,6 @@ export default class StudentsController {
   static getAllStudentsByMajor(req, res) {
     res.statusCode = 200;
     const param = req.params.major;
-    console.log(param);
     if (!['CS', 'SWE'].includes(param)) {
       res.statusCode = 500;
       res.end('Major parameter must be CS or SWE');
