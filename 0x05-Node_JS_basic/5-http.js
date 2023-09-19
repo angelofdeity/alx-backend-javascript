@@ -6,31 +6,33 @@ const port = 1245;
 const fs = require('fs');
 
 function handleData(data) {
-  const lines = data.split('\n').filter((line) => line !== 'firstname,lastname,age,field');
+  const lines = data.split('\n').filter((line) => line !== '');
+  const headers = lines.shift().split(',');
+  const fieldIndex = headers.indexOf('field');
   const cs = [];
   const swe = [];
   const students = lines.map((line) => line.split(','));
   for (const student of students) {
     if (student) {
-      if (student[3] === 'CS') {
+      if (student[fieldIndex] === 'CS') {
         cs.push(student[0]);
-      } else if (student[3] === 'SWE') {
+      } else if (student[fieldIndex] === 'SWE') {
         swe.push(student[0]);
       }
     }
   }
 
   return (
-    `Number of students: ${cs.length + swe.length}\n`
+    `Number of students: ${students.length}\n`
     + `Number of students in CS: ${cs.length}. List: ${cs.join(', ')}\n`
     + `Number of students in SWE: ${swe.length}. List: ${swe.join(', ')}`
   );
 }
-function countStudents(filePath) {
+async function countStudents(filePath) {
   return new Promise((resolve, reject) => {
     fs.readFile(filePath, 'utf8', (error, data) => {
       if (error) {
-        reject(new Error('Cannot load database'));
+        reject(Error('Cannot load database'));
       } else {
         resolve(handleData(data));
       }
@@ -50,7 +52,7 @@ const app = http.createServer(async (req, res) => {
   }
 });
 app.listen(port, host, () => {
-  console.log(`server running on http://${host}:${port}`);
+  console.log(`server running at http://${host}:${port}`);
 });
 
 module.exports = app;
