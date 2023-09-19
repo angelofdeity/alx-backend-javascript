@@ -40,10 +40,10 @@ function countStudents(filePath) {
 }
 const app = http.createServer(async (req, res) => {
   res.statusCode = 200;
-  res.setHeader('Content-type', 'text/plain');
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
   if (req.url === '/students') {
-    res.end(`This is the list of our students ${await countStudents(file)}`);
-  } else {
+    res.end(`This is the list of our students\n${await countStudents(file)}`);
+  } else if (req.url === '/') {
     res.end('Hello Holberton School!');
   }
 });
