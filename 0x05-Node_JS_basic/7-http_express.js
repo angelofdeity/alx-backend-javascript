@@ -39,16 +39,21 @@ async function countStudents(filePath) {
   });
 }
 app.get('/', (req, res) => {
+  res.setHeader('Content-Type', 'text/plain');
   res.end('Hello Holberton School!');
 });
 app.get('/students', async (req, res) => {
+  res.setHeader('Content-Type', 'text/plain');
   try {
     const data = await countStudents(process.argv[2]);
+    res.statusCode = 200;
     res.send(`This is the list of our students\n${data}`);
   } catch (err) {
+    res.statusCode = 404;
     res.send(`This is the list of our students\n${err.message}`);
   }
 });
 app.listen(port, () => {
   console.log(`Server running on port: ${port}`);
 });
+module.exports = app;
