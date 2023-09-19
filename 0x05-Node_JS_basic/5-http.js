@@ -42,7 +42,10 @@ const app = http.createServer(async (req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain; charset=utf-8');
   if (req.url === '/students') {
-    res.end(`This is the list of our students\n${await countStudents(file)}`);
+    res.write('This is the list of our students\n');
+    countStudents(file)
+      .then((data) => res.end(data))
+      .catch((error) => res.end(error.message));
   } else if (req.url === '/') {
     res.end('Hello Holberton School!');
   }
