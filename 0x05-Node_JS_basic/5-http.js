@@ -2,7 +2,6 @@ const http = require('http');
 
 const host = '127.0.0.1';
 const port = 1245;
-const file = process.argv[2];
 
 const fs = require('fs');
 
@@ -43,7 +42,7 @@ const app = http.createServer(async (req, res) => {
   res.setHeader('Content-Type', 'text/plain; charset=utf-8');
   if (req.url === '/students') {
     res.write('This is the list of our students\n');
-    countStudents(file)
+    countStudents(process.argv[2])
       .then((data) => res.end(data))
       .catch((error) => res.end(error.message));
   } else if (req.url === '/') {
