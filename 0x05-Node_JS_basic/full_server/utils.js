@@ -23,8 +23,9 @@ export default function readDatabase(filePath) {
     fs.readFile(filePath, 'utf-8', (err, data) => {
       if (err) {
         reject(new Error(err));
+      } else {
+        resolve(handleData(data));
       }
-      resolve(handleData(data));
     });
   });
 }

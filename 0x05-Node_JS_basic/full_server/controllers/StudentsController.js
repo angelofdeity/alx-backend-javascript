@@ -1,8 +1,5 @@
 import readDatabase from '../utils';
 
-const path = require('path');
-
-const filePath = path.join(__dirname, '../../database.csv');
 export default class StudentsController {
   static getAllStudents(req, res) {
     res.statusCode = 200;
