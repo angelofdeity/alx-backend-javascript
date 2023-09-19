@@ -1,15 +1,19 @@
 const fs = require('fs');
 
 function handleData(data) {
-  const lines = data.trim().split('\n');
-  const students = lines.map((line) => line.split(','));
+  const lines = data.split('\n').filter((line) => line !== '');
+  const headers = lines.shift().split(',');
+  const fieldIndex = headers.indexOf('field');
   const cs = [];
   const swe = [];
+  const students = lines.map((line) => line.split(','));
   for (const student of students) {
-    if (student[3] === 'CS') {
-      cs.push(student[0]);
-    } else if (student[3] === 'SWE') {
-      swe.push(student[0]);
+    if (student) {
+      if (student[fieldIndex] === 'CS') {
+        cs.push(student[0]);
+      } else if (student[fieldIndex] === 'SWE') {
+        swe.push(student[0]);
+      }
     }
   }
   return { cs, swe };

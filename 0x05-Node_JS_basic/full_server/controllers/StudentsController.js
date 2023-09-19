@@ -10,8 +10,8 @@ export default class StudentsController {
       .then((data) => {
         const response = [
           'This is the list of our students',
-          `Number of students in CS: ${data.cs.length}`,
-          `Number of students in SWE: ${data.swe.length}`,
+          `Number of students in CS: ${data.cs.length}. List: ${data.cs.join(', ')}`,
+          `Number of students in SWE: ${data.swe.length}. List: ${data.swe.join(', ')}`,
         ].join('\n');
         res.end(response);
       })
@@ -31,9 +31,9 @@ export default class StudentsController {
     readDatabase(filePath)
       .then((data) => {
         if (param === 'CS') {
-          res.end(`List: ${data.cs}`);
+          res.end(`List: ${data.cs.join(', ')}`);
         } else if (param === 'SWE') {
-          res.end(`List: ${data.swe}`);
+          res.end(`List: ${data.swe.join(', ')}`);
         }
       })
       .catch(() => {
